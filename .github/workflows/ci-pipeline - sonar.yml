@@ -53,6 +53,6 @@ jobs:
     #      msbuild .\SG-Clicker.sln /t:Rebuild
     #      .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       run: |
-          SonarScanner.MSBuild.exe begin /k:"ms-clicker" /o:"nirosans" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          SonarScanner.MSBuild.exe begin /k:"ms-clicker1" /o:"nirosans" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           MsBuild.exe .\SG-Clicker.sln /t:Rebuild
           SonarScanner.MSBuild.exe end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
