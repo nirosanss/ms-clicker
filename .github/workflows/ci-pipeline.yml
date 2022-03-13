@@ -20,11 +20,11 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Nuget
-      uses: qtc6865/setup-nuget@main
+      uses: nuget/setup-nuget@v1
       with:
         nuget-version: ${{ env.NUGET_VERSION}}
     - name: NuGet - Restore Packages
-      run: nuget restore
+      run: nuget restore .\SG-Clicker.sln
 
 #    - name: Add msbuild to PATH
 #      uses: microsoft/setup-msbuild@v1.0.0
