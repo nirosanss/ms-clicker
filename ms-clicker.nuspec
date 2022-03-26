@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MS-Clicker</id>
+    <version>1.0.0.0</version>
+    <title>MS-Clicker</title>
+    <authors>BMW</authors>
+    <owners>BMW</owners>
+    <description>MS-Clicker Deployment Package.</description>
+    <releaseNotes>This release includes MS-Clicker for Deployment.</releaseNotes>
+    <copyright>Copyright 2022</copyright>    
+    <developmentDependency>true</developmentDependency>
+  </metadata>  
+  <files>
+    <file src="..\bin\app.publish\**\*.*" exclude="**\obj\**\*" />    
+  </files>
+</package>
