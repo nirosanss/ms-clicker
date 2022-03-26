@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>MS-Clicker</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1.1</version>
     <title>MS-Clicker</title>
     <authors>BMW</authors>
     <owners>BMW</owners>
