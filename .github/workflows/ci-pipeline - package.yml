@@ -38,6 +38,13 @@ jobs:
       run: msbuild .\SG-Clicker.sln /p:DeployOnBuild=true /p:PublishProfile=ms-clickerProfile      
       
     - name: Run Nuget - Package
-      run: nuget.exe pack .\ms-clicker.nuspec
+      run: nuget.exe pack .\ms-clicker.nuspec      
+      
+    - name: Prep packages
+      run: nuget add source --username nirosanss --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/nirosanss/index.json"
+      
+    - name: Publish to GitHub packages 
+      run: nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+      
       
       
