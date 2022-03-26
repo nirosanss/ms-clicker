@@ -41,7 +41,7 @@ jobs:
       run: nuget.exe pack .\ms-clicker.nuspec      
       
     - name: Prep packages
-      run: nuget add source --username nirosanss --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/nirosanss/index.json"
+      run: nuget Sources Add -Name github -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
       
     - name: Publish to GitHub packages 
       run: nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
