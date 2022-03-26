@@ -12,6 +12,6 @@
     <developmentDependency>true</developmentDependency>
   </metadata>  
   <files>
-    <file src="..\bin\app.publish\**\*.*" exclude="**\obj\**\*" />    
+    <file src="bin\app.publish\**\*.*" exclude="**\obj\**\*" />    
   </files>
 </package>

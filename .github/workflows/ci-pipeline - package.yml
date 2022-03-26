@@ -1,0 +1,43 @@
+name: CI Pipeline - Package
+
+on:
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]    
+  workflow_dispatch:
+
+# CONFIGURATION
+env:
+  NUGET_VERSION: '5.3.1'           # set this to the dot net version to use
+  
+jobs:
+  build:
+
+    runs-on: [ NS-DEV ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: ${{ env.NUGET_VERSION}}
+    - name: NuGet - Restore Packages
+      run: nuget restore .\SG-Clicker.sln
+
+#    - name: Add msbuild to PATH
+#      uses: microsoft/setup-msbuild@v1.0.0
+      #with:
+      #  vs-version: "[16.4,16.5]"  #Version of Visual Studio to search; defaults to latest if not specified
+
+    - name: Run MSBuild - SG-Clicker.sln
+      run: msbuild .\SG-Clicker.sln
+      
+    - name: Run MSBuild - Publish Web
+      run: msbuild .\SG-Clicker.sln /p:DeployOnBuild=true /p:PublishProfile=ms-clickerProfile      
+      
+    - name: Run Nuget - Package
+      run: nuget.exe pack .\ms-clicker.nuspec
+      
+      
