@@ -24,15 +24,15 @@ jobs:
       with:
         nuget-version: ${{ env.NUGET_VERSION}}
     
-    - name: Perform a Pester test from the Tests.ps1 file
-      #shell: pwsh
+    - name: Prep Nuget Source - Github Repo
       run: |          
         if (!!(nuget Sources List | ? { $_ -like "*githubRepo*"})){
             nuget Sources Remove -Name githubRepo
         }
+        run: nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
       
-    - name: Prep packages
-      run: nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
+    #- name: Prep packages
+    # run: nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
       
       
       
