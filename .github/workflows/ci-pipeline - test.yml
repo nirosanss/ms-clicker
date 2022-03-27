@@ -29,7 +29,7 @@ jobs:
         if (!!(nuget Sources List | ? { $_ -like "*githubRepo*"})){
             nuget Sources Remove -Name githubRepo
         }
-        run: nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
+        nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
       
     #- name: Prep packages
     # run: nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
