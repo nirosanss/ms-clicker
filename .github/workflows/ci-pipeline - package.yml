@@ -37,8 +37,13 @@ jobs:
     - name: Run MSBuild - Publish Web
       run: msbuild .\SG-Clicker.sln /p:DeployOnBuild=true /p:PublishProfile=ms-clickerProfile      
       
+      
+    - name: Get Package Version No
+      id: Version
+      run: echo "::set-output name=VersionNo::$((get-date).ToString("yyyy.MM.dd.HHmmss"))"      
+      
     - name: Run Nuget - Package
-      run: nuget.exe pack .\ms-clicker.nuspec      
+      run: nuget.exe pack .\ms-clicker.nuspec -Version ${{ steps.Version.outputs.VersionNo }}
       
     - name: Prep Nuget Source - Github Repo
       run: |          
@@ -49,10 +54,3 @@ jobs:
       
     - name: Publish to GitHub packages 
       run: nuget push *.nupkg -ApiKey ${{ secrets.GITHUB_TOKEN }} -Source "github"
-      
-    - name: Get Package Version No
-      id: Version
-      run: echo "::set-output name=VersionNo::$(date +'%Y.%m.%d.%H%M')"
-    
-    - name: print Package Version No
-      run: echo "Package Version No ${{ steps.Version.outputs.VersionNo }}"    
