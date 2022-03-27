@@ -40,8 +40,12 @@ jobs:
     - name: Run Nuget - Package
       run: nuget.exe pack .\ms-clicker.nuspec      
       
-    - name: Prep packages
-      run: nuget Sources Add -Name github -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
+    - name: Prep Nuget Source - Github Repo
+      run: |          
+        if (!!(nuget Sources List | ? { $_ -like "*githubRepo*"})){
+            nuget Sources Remove -Name githubRepo
+        }
+        nuget Sources Add -Name githubRepo -Source "https://nuget.pkg.github.com/nirosanss/index.json" -UserName nirosanss -Password ${{ secrets.GITHUB_TOKEN }}
       
     - name: Publish to GitHub packages 
       run: nuget push *.nupkg -ApiKey ${{ secrets.GITHUB_TOKEN }} -Source "github"
