@@ -36,7 +36,8 @@ jobs:
       
     - name: Get Package Version No
       id: Version
-      run: echo "::set-output name=VersionNo::$(%date:~10,4%.%date:~4,2%.%date:~7,2%.%time:~0,2%%time:~3,2%)" #echo "::set-output name=VersionNo::$(date + '%Y.%m.%d')"  #'%Y.%m.%d.%H%M'
+      run: echo "::set-output name=VersionNo::$((get-date).ToString("yyyy.MM.dd.HHmmss"))"
+      #echo "::set-output name=VersionNo::$(%date:~10,4%.%date:~4,2%.%date:~7,2%.%time:~0,2%%time:~3,2%)" #echo "::set-output name=VersionNo::$(date + '%Y.%m.%d')"  #'%Y.%m.%d.%H%M'
     
     - name: print Package Version No
       run: echo "Package Version No ${{ steps.Version.outputs.VersionNo }}"   
