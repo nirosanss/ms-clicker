@@ -25,7 +25,7 @@ jobs:
         nuget-version: ${{ env.NUGET_VERSION}}
     
     - name: Perform a Pester test from the Tests.ps1 file
-      shell: pwsh
+      #shell: pwsh
       run: |          
         if (!!(nuget Sources List | ? { $_ -like "*githubRepo*"})){
             nuget Sources Remove -Name githubRepo
